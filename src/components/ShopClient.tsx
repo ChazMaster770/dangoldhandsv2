@@ -1,17 +1,17 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Layers, Package, Search, Sparkles } from "lucide-react";
+import { Search, Sparkles } from "lucide-react";
 import type { Product } from "@/db/schema";
+import { PRODUCT_KINDS } from "@/lib/kinds";
 import ProductCard from "./ProductCard";
 
-type Tab = "all" | "box" | "pack";
+type Tab = string;
 type Sort = "featured" | "cheap" | "expensive";
 
-const TABS: { key: Tab; label: string; icon?: typeof Package }[] = [
+const TABS: { key: Tab; label: string; icon?: typeof Sparkles }[] = [
   { key: "all", label: "הכול", icon: Sparkles },
-  { key: "box", label: "בוקסים אטומים", icon: Package },
-  { key: "pack", label: "חבילות", icon: Layers },
+  ...PRODUCT_KINDS.map((k) => ({ key: k.value as string, label: k.label })),
 ];
 
 export default function ShopClient({ products }: { products: Product[] }) {

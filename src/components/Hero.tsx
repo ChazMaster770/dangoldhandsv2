@@ -53,7 +53,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.16 }}
             className="mt-4 text-2xl font-extrabold text-white/90 md:text-3xl"
           >
-            בוסטרים אטומים. חבילות פוקימון. הערצות בלייב.
+            בוסטרים אטומים. חבילות פוקימון. מכירות פומביות.
           </motion.p>
 
           <motion.p
@@ -77,7 +77,7 @@ export default function Hero() {
             </Link>
             <Link href="/claims" className="btn-ghost">
               <Gavel size={18} />
-              להערצות בלייב
+              מכירות פומביות
               <span className="animate-live-dot h-2 w-2 rounded-full bg-red-400" />
             </Link>
             <a

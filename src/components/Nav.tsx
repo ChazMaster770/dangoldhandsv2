@@ -11,7 +11,7 @@ import { waLink } from "@/lib/constants";
 const LINKS = [
   { href: "/", label: "בית" },
   { href: "/shop", label: "החנות" },
-  { href: "/claims", label: "הערצות", live: true },
+  { href: "/claims", label: "מכירות פומביות", live: true },
   { href: "/#how", label: "איך קונים" },
 ];
 

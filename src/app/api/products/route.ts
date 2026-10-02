@@ -4,6 +4,7 @@ import { db } from "@/db";
 import { products } from "@/db/schema";
 import { isAdminRequest } from "@/lib/admin";
 import { ensureDb } from "@/db/ensure";
+import { KIND_VALUES } from "@/lib/kinds";
 
 export const dynamic = "force-dynamic";
 
@@ -40,7 +41,7 @@ export async function POST(req: NextRequest) {
       .values({
         name: b.name.trim(),
         setName: typeof b.setName === "string" ? b.setName.trim() || null : null,
-        kind: b.kind === "box" ? "box" : "pack",
+        kind: KIND_VALUES.includes(b.kind) ? String(b.kind) : "pack",
         price,
         compareAt: compareAt && compareAt > price ? compareAt : null,
         image: b.image.trim(),

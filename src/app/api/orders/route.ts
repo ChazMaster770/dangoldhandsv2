@@ -4,6 +4,7 @@ import { db } from "@/db";
 import { orders, type OrderItem } from "@/db/schema";
 import { isAdminRequest } from "@/lib/admin";
 import { ensureDb } from "@/db/ensure";
+import { KIND_VALUES } from "@/lib/kinds";
 
 export const dynamic = "force-dynamic";
 
@@ -32,7 +33,7 @@ export async function POST(req: NextRequest) {
     .map((i) => ({
       id: Number(i.id) || 0,
       name: String(i.name),
-      kind: i.kind === "box" ? "box" : "pack",
+      kind: KIND_VALUES.includes(i.kind) ? String(i.kind) : "pack",
       price: Math.max(0, Math.round(Number(i.price) || 0)),
       qty: Math.min(99, Math.round(Number(i.qty))),
     }));

@@ -64,6 +64,10 @@ CREATE TABLE IF NOT EXISTS "media" (
   "content_type" text NOT NULL,
   "data" text NOT NULL
 );
+CREATE TABLE IF NOT EXISTS "app_meta" (
+  "key" text PRIMARY KEY NOT NULL,
+  "value" text NOT NULL
+);
 CREATE INDEX IF NOT EXISTS "claims_status_idx" ON "claims" USING btree ("status");
 CREATE INDEX IF NOT EXISTS "bids_claim_idx" ON "bids" USING btree ("claim_id");
 DO $$ BEGIN
@@ -77,8 +81,8 @@ DO $$ BEGIN
 END $$;
 `;
 
-/** Upgrades stale /images/*.png references in existing rows to .jpg. */
-async function migrateImagePaths() {
+/** Data migrations: image extension swap + category taxonomy upgrade. */
+async function migrateData() {
   await db.execute(
     sql`UPDATE "products" SET "image" = REPLACE("image", '.png', '.jpg')
         WHERE "image" LIKE '/images/%' AND "image" LIKE '%.png'`,
@@ -86,6 +90,10 @@ async function migrateImagePaths() {
   await db.execute(
     sql`UPDATE "claims" SET "image" = REPLACE("image", '.png', '.jpg')
         WHERE "image" LIKE '/images/%' AND "image" LIKE '%.png'`,
+  );
+  // old 'box' category -> new 'booster-box' (admins can fine-tune to ETB etc.)
+  await db.execute(
+    sql`UPDATE "products" SET "kind" = 'booster-box' WHERE "kind" = 'box'`,
   );
 }
 
@@ -142,7 +150,7 @@ export function ensureDb(): Promise<void> {
   if (!ensurePromise) {
     ensurePromise = (async () => {
       await pool.query(DDL);
-      await migrateImagePaths();
+      await migrateData();
       await ensureSeed();
       await seedMediaFromDisk();
     })().catch((err: unknown) => {

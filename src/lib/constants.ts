@@ -28,6 +28,8 @@ export function prettyWhatsApp() {
   return "+" + n;
 }
 
+import { kindLabel } from "./format";
+
 export type CartShape = {
   id: number;
   name: string;
@@ -50,7 +52,7 @@ export function buildOrderMessage(opts: {
     "שלום דן, אשמח להזמין:",
     ...opts.items.map(
       (i) =>
-        `- ${i.name}${i.kind === "box" ? " (בוקס אטום)" : " (חבילה)"} x${i.qty} — ₪${(
+        `- ${i.name} (${kindLabel(i.kind)}) x${i.qty} — ₪${(
           i.price * i.qty
         ).toLocaleString("he-IL")}`,
     ),

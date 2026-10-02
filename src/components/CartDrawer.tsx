@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { buildOrderMessage, smsLink, waLink } from "@/lib/constants";
-import { ils } from "@/lib/format";
+import { ils, kindLabel } from "@/lib/format";
 import Pokeball from "./Pokeball";
 
 type SendState = "idle" | "sending" | "sent" | "error";
@@ -167,7 +167,7 @@ export default function CartDrawer() {
                       <div className="min-w-0 flex-1">
                         <p className="truncate text-sm font-bold">{i.name}</p>
                         <p className="text-xs text-white/45">
-                          {i.kind === "box" ? "בוקס אטום" : "חבילה"} • {ils(i.price)}
+                          {kindLabel(i.kind)} • {ils(i.price)}
                         </p>
                         <div className="mt-1.5 flex items-center gap-2">
                           <div className="flex items-center rounded-full border border-white/12">

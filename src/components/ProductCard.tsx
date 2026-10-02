@@ -3,10 +3,19 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Check, Layers, Package, Plus } from "lucide-react";
+import { Boxes, Check, Layers, Package, PackageOpen, Plus } from "lucide-react";
 import type { Product } from "@/db/schema";
 import { useCart } from "@/context/CartContext";
 import { ils, kindLabel } from "@/lib/format";
+
+const KIND_ICONS: Record<string, typeof Package> = {
+  case: Package,
+  "booster-box": Package,
+  etb: PackageOpen,
+  "booster-bundle": Boxes,
+  blister: Layers,
+  pack: Layers,
+};
 
 export default function ProductCard({
   product,
@@ -18,6 +27,7 @@ export default function ProductCard({
   const { add } = useCart();
   const [added, setAdded] = useState(false);
   const soldOut = product.stock <= 0;
+  const KindIcon = KIND_ICONS[product.kind] ?? Layers;
 
   const handleAdd = () => {
     add({
@@ -58,7 +68,7 @@ export default function ProductCard({
         {/* chips */}
         <div className="absolute inset-x-3 top-3 flex items-start justify-between">
           <span className="chip !bg-night/70 backdrop-blur-sm">
-            {product.kind === "box" ? <Package size={13} /> : <Layers size={13} />}
+            <KindIcon size={13} />
             {kindLabel(product.kind)}
           </span>
           <div className="flex flex-col items-end gap-1.5">

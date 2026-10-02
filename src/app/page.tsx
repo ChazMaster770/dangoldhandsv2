@@ -79,7 +79,7 @@ export default async function HomePage() {
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <SectionHead
             kicker="LIVE CLAIMS & AUCTIONS"
-            title="הערצות בלייב"
+            title="מכירות פומביות"
             sub="כמו קליימים בלייב, אבל כל השבוע: מציבים הצעה, מובילים עד הסוף ולוקחים את השלל. ההצעה הגבוהה מנצחת."
             action={
               <Link href="/claims" className="btn-ghost !py-2.5 text-sm">

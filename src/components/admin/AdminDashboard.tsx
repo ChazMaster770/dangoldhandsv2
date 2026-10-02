@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import type { Claim, Order, Product } from "@/db/schema";
 import { IMAGE_CHOICES } from "@/lib/images";
+import { PRODUCT_KINDS } from "@/lib/kinds";
 import { formatDate, ils, kindLabel, orderStatusLabel } from "@/lib/format";
 import ImageField from "./ImageField";
 
@@ -27,7 +28,7 @@ type Tab = "products" | "claims" | "orders";
 
 const TABS: { key: Tab; label: string; icon: typeof Package }[] = [
   { key: "products", label: "מוצרים", icon: Package },
-  { key: "claims", label: "הערצות", icon: Gavel },
+  { key: "claims", label: "מכירות פומביות", icon: Gavel },
   { key: "orders", label: "הזמנות", icon: ClipboardList },
 ];
 
@@ -77,7 +78,7 @@ export default function AdminDashboard({
         <div className="flex items-center gap-3">
           <div className="hidden gap-4 rounded-full border border-white/10 px-5 py-2 text-xs text-white/55 sm:flex">
             <span><b className="text-goldlight">{products.length}</b> מוצרים</span>
-            <span><b className="text-goldlight">{claims.filter((c) => c.status === "live").length}</b> הערצות live</span>
+            <span><b className="text-goldlight">{claims.filter((c) => c.status === "live").length}</b> מכירות live</span>
             <span><b className="text-goldlight">{orders.filter((o) => o.status === "new").length}</b> הזמנות חדשות</span>
           </div>
           <button
@@ -233,8 +234,11 @@ function ProductsTab({ products, refresh }: { products: Product[]; refresh: () =
         <input className="input-dark" placeholder="שם סדרה באנגלית (אופציונלי)" value={form.setName} onChange={(e) => setForm({ ...form, setName: e.target.value })} dir="ltr" />
         <div className="grid grid-cols-2 gap-2">
           <select className="input-dark cursor-pointer" value={form.kind} onChange={(e) => setForm({ ...form, kind: e.target.value })}>
-            <option value="pack">חבילה</option>
-            <option value="box">בוקס אטום</option>
+            {PRODUCT_KINDS.map((k) => (
+              <option key={k.value} value={k.value}>
+                {k.label}
+              </option>
+            ))}
           </select>
           <input className="input-dark" placeholder="מלאי" type="number" min={0} value={form.stock} onChange={(e) => setForm({ ...form, stock: e.target.value })} />
           <input className="input-dark" placeholder="מחיר ₪ *" type="number" min={1} value={form.price} onChange={(e) => setForm({ ...form, price: e.target.value })} />

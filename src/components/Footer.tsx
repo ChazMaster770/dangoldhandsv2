@@ -28,7 +28,7 @@ export default function Footer() {
             </div>
             <p className="mt-4 max-w-sm text-sm leading-7 text-white/50">
               חנות פוקימון TCG ולייבים: בוסטר בוקסים אטומים, חבילות, קלפים נדירים
-              והערצות — עם ידי הזהב של דן ואחריות מלאה על כל חבילה.
+              ומכירות פומביות — עם ידי הזהב של דן ואחריות מלאה על כל חבילה.
             </p>
             <div className="mt-5 flex flex-wrap gap-2.5">
               <a
@@ -58,7 +58,7 @@ export default function Footer() {
             <ul className="space-y-2.5 text-sm font-bold text-white/60">
               <li><Link href="/" className="transition hover:text-goldlight">בית</Link></li>
               <li><Link href="/shop" className="transition hover:text-goldlight">החנות</Link></li>
-              <li><Link href="/claims" className="transition hover:text-goldlight">הערצות בלייב</Link></li>
+              <li><Link href="/claims" className="transition hover:text-goldlight">מכירות פומביות</Link></li>
               <li><Link href="/#how" className="transition hover:text-goldlight">איך קונים</Link></li>
               <li><Link href="/admin" className="text-white/35 transition hover:text-goldlight">כניסת ניהול</Link></li>
             </ul>
@@ -84,7 +84,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2.5">
                 <Pokeball size={16} className="shrink-0" />
-                פתיחות והערצות בלייב כל שבוע
+                פתיחות ומכירות פומביות כל שבוע
               </li>
             </ul>
           </div>

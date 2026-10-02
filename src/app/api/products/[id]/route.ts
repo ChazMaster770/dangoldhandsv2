@@ -4,6 +4,7 @@ import { db } from "@/db";
 import { products } from "@/db/schema";
 import { isAdminRequest } from "@/lib/admin";
 import { ensureDb } from "@/db/ensure";
+import { KIND_VALUES } from "@/lib/kinds";
 
 export const dynamic = "force-dynamic";
 
@@ -27,7 +28,7 @@ export async function PATCH(req: NextRequest, ctx: Ctx) {
   if (typeof b.description === "string") patch.description = b.description.trim() || null;
   if (typeof b.badge === "string") patch.badge = b.badge.trim() || null;
   if (typeof b.image === "string") patch.image = b.image.trim();
-  if (b.kind === "box" || b.kind === "pack") patch.kind = b.kind;
+  if (KIND_VALUES.includes(b.kind)) patch.kind = b.kind;
   if (typeof b.featured === "boolean") patch.featured = b.featured;
   if (b.price !== undefined) {
     const price = Math.round(Number(b.price));

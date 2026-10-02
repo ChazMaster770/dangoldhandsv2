@@ -9,8 +9,8 @@ import { ensureDb } from "@/db/ensure";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "הערצות בלייב | דן ידי זהב",
-  description: "הערצות וקליימים על מוצרי פוקימון נדירים — מציבים הצעה, מובילים עד הסוף ולוקחים את השלל.",
+  title: "מכירות פומביות | דן ידי זהב",
+  description: "מכירות פומביות על מוצרי פוקימון נדירים — מציבים הצעה, מובילים עד הסוף ולוקחים את השלל.",
 };
 
 async function getClaims(): Promise<Claim[]> {
@@ -30,7 +30,7 @@ export default async function ClaimsPage() {
       <div className="mx-auto max-w-7xl px-4 md:px-8">
         <SectionHead
           kicker="LIVE CLAIMS & AUCTIONS"
-          title="הערצות בלייב"
+          title="מכירות פומביות"
           sub="בדיוק כמו קליימים בלייב של דן: מציבים הצעה שווה או גבוהה מהמינימום, מובילים עד ששעון נגמר — ולוקחים את הפריט הביתה."
         />
 

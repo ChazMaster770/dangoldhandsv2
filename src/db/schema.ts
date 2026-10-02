@@ -96,8 +96,15 @@ export const media = pgTable("media", {
   data: text("data").notNull(), // base64
 });
 
+/** Simple key-value flags (e.g. one-time seeding). */
+export const appMeta = pgTable("app_meta", {
+  key: text("key").primaryKey(),
+  value: text("value").notNull(),
+});
+
 export type Product = typeof products.$inferSelect;
 export type Claim = typeof claims.$inferSelect;
 export type Bid = typeof bids.$inferSelect;
 export type Order = typeof orders.$inferSelect;
 export type MediaFile = typeof media.$inferSelect;
+export type AppMeta = typeof appMeta.$inferSelect;

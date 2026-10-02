@@ -1,22 +1,33 @@
-import { count } from "drizzle-orm";
+import { count, eq } from "drizzle-orm";
 import { db } from "./index";
-import { products, claims } from "./schema";
+import { appMeta, products, claims } from "./schema";
+
+const SEED_FLAG = "catalog_seeded_v2";
 
 /**
- * Inserts the starter catalogue when the tables are empty.
- * Safe to call repeatedly — it only seeds empty tables.
+ * One-time starter catalogue seeding. Runs only until it records a flag in
+ * app_meta — afterwards nothing is re-seeded, so admin deletions stick.
  */
 export async function ensureSeed() {
+  const [{ value: flagged }] = await db
+    .select({ value: count() })
+    .from(appMeta)
+    .where(eq(appMeta.key, SEED_FLAG));
+  if (flagged > 0) return;
+
   const [{ value: productCount }] = await db
     .select({ value: count() })
     .from(products);
+  const [{ value: claimCount }] = await db
+    .select({ value: count() })
+    .from(claims);
 
-  if (productCount === 0) {
+  if (productCount === 0 && claimCount === 0) {
     await db.insert(products).values([
       {
         name: "בוסטר בוקס \"זהב מבריק\" — 36 חבילות",
         setName: "Golden Bolt Collection",
-        kind: "box",
+        kind: "booster-box",
         price: 649,
         compareAt: 719,
         image: "/images/products/box-gold.jpg",
@@ -29,7 +40,7 @@ export async function ensureSeed() {
       {
         name: "בוסטר בוקס \"גלקסי סגול\" — 36 חבילות",
         setName: "Nebula Violet",
-        kind: "box",
+        kind: "booster-box",
         price: 689,
         compareAt: 749,
         image: "/images/products/box-violet.jpg",
@@ -42,7 +53,7 @@ export async function ensureSeed() {
       {
         name: "קופסת מאמן עלית (ETB) \"תדר כחול\"",
         setName: "Elite Volt ETB",
-        kind: "box",
+        kind: "etb",
         price: 289,
         compareAt: 329,
         image: "/images/products/box-cyan.jpg",
@@ -68,7 +79,7 @@ export async function ensureSeed() {
       {
         name: "חבילת בוסטר \"להבה אדומה\"",
         setName: "Crimson Flame",
-        kind: "pack",
+        kind: "blister",
         price: 22,
         compareAt: null,
         image: "/images/products/pack-red.jpg",
@@ -92,7 +103,7 @@ export async function ensureSeed() {
       {
         name: "מארז אספן — רביעיית קלפי פרומו",
         setName: "Collector's Vault",
-        kind: "pack",
+        kind: "case",
         price: 39,
         compareAt: 49,
         image:
@@ -106,7 +117,7 @@ export async function ensureSeed() {
       {
         name: "צרור 5 חבילות + קלף הפתעה",
         setName: "Dan's Lucky Bundle",
-        kind: "pack",
+        kind: "booster-bundle",
         price: 99,
         compareAt: 117,
         image:
@@ -119,13 +130,7 @@ export async function ensureSeed() {
       },
     ]);
     console.log("[db] Seeded 8 products");
-  }
 
-  const [{ value: claimCount }] = await db
-    .select({ value: count() })
-    .from(claims);
-
-  if (claimCount === 0) {
     const now = Date.now();
     await db.insert(claims).values([
       {
@@ -171,4 +176,10 @@ export async function ensureSeed() {
     ]);
     console.log("[db] Seeded 3 claims");
   }
+
+  // Seeding records a flag and runs at most once — afterwards deletions stick.
+  await db
+    .insert(appMeta)
+    .values({ key: SEED_FLAG, value: new Date().toISOString() })
+    .onConflictDoNothing({ target: appMeta.key });
 }

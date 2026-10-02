@@ -12,8 +12,10 @@ export function formatDate(d: string | Date | null | undefined) {
   });
 }
 
+import { KIND_LABELS } from "./kinds";
+
 export function kindLabel(kind: string) {
-  return kind === "box" ? "בוקס אטום" : "חבילה";
+  return KIND_LABELS[kind] ?? "חפיסה";
 }
 
 export function orderStatusLabel(s: string) {
