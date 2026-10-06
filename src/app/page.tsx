@@ -52,7 +52,7 @@ export default async function HomePage() {
           <SectionHead
             kicker="FRESH STOCK"
             title="המבחר החם של דן"
-            sub="בוקסים אטומים וחבילות שנחתו אצלנו השבוע — במחירי זהב, עד גמר המלאי האחרון."
+            sub="מארזים, בוסטר בוקס, איטיבי וחבילות שנחתו אצלנו השבוע — במחירי זהב, עד גמר המלאי האחרון."
             action={
               <Link href="/shop" className="btn-ghost !py-2.5 text-sm">
                 לכל החנות
@@ -83,7 +83,7 @@ export default async function HomePage() {
             sub="כמו קליימים בלייב, אבל כל השבוע: מציבים הצעה, מובילים עד הסוף ולוקחים את השלל. ההצעה הגבוהה מנצחת."
             action={
               <Link href="/claims" className="btn-ghost !py-2.5 text-sm">
-                לכל ההערצות
+                לכל המכירות הפומביות
                 <ArrowLeft size={16} />
               </Link>
             }

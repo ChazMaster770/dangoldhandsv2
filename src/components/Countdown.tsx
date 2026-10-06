@@ -40,7 +40,7 @@ export default function Countdown({
     return (
       <span className={`inline-flex items-center gap-1.5 text-white/50 ${className}`}>
         <Timer size={14} />
-        ההערצה הסתיימה
+        המכירה הסתיימה
       </span>
     );
   }

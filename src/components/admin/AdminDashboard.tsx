@@ -362,7 +362,7 @@ function ClaimsTab({ claims, refresh }: { claims: Claim[]; refresh: () => Promis
   };
 
   const remove = async (id: number) => {
-    if (!confirm("למחוק את ההערצה וכל ההצעות שלה?")) return;
+    if (!confirm("למחוק את המכירה הפומבית וכל ההצעות שלה?")) return;
     await fetch(`/api/claims/${id}`, { method: "DELETE" });
     await refresh();
   };
@@ -372,9 +372,9 @@ function ClaimsTab({ claims, refresh }: { claims: Claim[]; refresh: () => Promis
       <form onSubmit={submit} className="glass-panel h-max space-y-3 rounded-3xl p-6">
         <h3 className="flex items-center gap-2 text-lg font-black">
           <Gavel size={18} className="text-gold" />
-          הערצה חדשה
+          מכירה פומבית חדשה
         </h3>
-        <input className="input-dark" placeholder="כותרת ההערצה *" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
+        <input className="input-dark" placeholder="כותרת המכירה הפומבית *" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
         <textarea className="input-dark min-h-20 resize-y" placeholder="תיאור (אופציונלי)" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} />
         <div className="grid grid-cols-2 gap-2">
           <input className="input-dark" placeholder="מחיר פתיחה ₪ *" type="number" min={1} value={form.startPrice} onChange={(e) => setForm({ ...form, startPrice: e.target.value })} />
@@ -387,14 +387,14 @@ function ClaimsTab({ claims, refresh }: { claims: Claim[]; refresh: () => Promis
         <ImageField value={form.image} onChange={(src) => setForm({ ...form, image: src })} />
         {error && <p className="text-xs font-bold text-red-400">{error}</p>}
         <button type="submit" disabled={busy} className="btn-gold w-full">
-          {busy ? "פותח..." : "פתיחת הערצה"}
+          {busy ? "פותח..." : "פתיחת מכירה פומבית"}
         </button>
       </form>
 
       <div className="space-y-3">
         {claims.length === 0 && (
           <div className="glass-panel rounded-3xl p-10 text-center text-white/50">
-            אין הערצות — פותחים אחת בטופס מצד ימין
+            אין מכירות פומביות — פותחים אחת בטופס מצד ימין
           </div>
         )}
         {claims.map((c) => (

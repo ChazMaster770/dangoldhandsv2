@@ -50,14 +50,6 @@ export default function Hero() {
 
           <motion.p
             {...fadeUp}
-            transition={{ duration: 0.6, delay: 0.16 }}
-            className="mt-4 text-2xl font-extrabold text-white/90 md:text-3xl"
-          >
-            בוסטרים אטומים. חבילות פוקימון. מכירות פומביות.
-          </motion.p>
-
-          <motion.p
-            {...fadeUp}
             transition={{ duration: 0.6, delay: 0.24 }}
             className="mt-4 max-w-xl leading-8 text-white/55"
           >

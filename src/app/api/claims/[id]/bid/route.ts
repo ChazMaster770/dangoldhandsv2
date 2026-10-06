@@ -34,14 +34,14 @@ export async function POST(req: NextRequest, ctx: Ctx) {
 
   const result = await db.transaction(async (tx) => {
     const [claim] = await tx.select().from(claims).where(eq(claims.id, cid));
-    if (!claim) return { code: 404 as const, error: "ההערצה לא נמצאה" };
+    if (!claim) return { code: 404 as const, error: "המכירה הפומבית לא נמצאה" };
 
     if (claim.status !== "live") {
-      return { code: 400 as const, error: "ההערצה הזו כבר נסגרה" };
+      return { code: 400 as const, error: "המכירה הזו כבר נסגרה" };
     }
     if (claim.endsAt && new Date(claim.endsAt).getTime() <= Date.now()) {
       await tx.update(claims).set({ status: "closed" }).where(eq(claims.id, cid));
-      return { code: 400 as const, error: "ההערצה הסתיימה — טיפה איחרתם!" };
+      return { code: 400 as const, error: "המכירה הסתיימה — טיפה איחרתם!" };
     }
 
     const min = claim.bidsCount > 0 ? claim.currentBid + claim.minIncrement : claim.startPrice;

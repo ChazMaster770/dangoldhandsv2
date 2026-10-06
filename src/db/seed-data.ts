@@ -147,7 +147,7 @@ export async function ensureSeed() {
         endsAt: new Date(now + 1000 * 60 * 60 * 50),
       },
       {
-        title: "בוקס גלקסי סגול אטום — הערצת לייב",
+        title: "בוקס גלקסי סגול אטום — מכירה פומבית בלייב",
         description:
           "בוקס אטום לגמרי, 36 חבילות. אפשרות לפתיחה משותפת בלייב לזוכה. דואר רשום עלינו.",
         image: "/images/products/box-violet.jpg",
@@ -162,7 +162,7 @@ export async function ensureSeed() {
       {
         title: "מארז לייב: 10 חבילות מעורבות + פרומו",
         description:
-          "מארז הערצה מיוחד מהלייב: 10 חבילות אטומות מעורבות + קלף פרומו אנרגיה נדיר. פתיחה בלייב לזוכה.",
+          "מארז מכירה פומבית מיוחד מהלייב: 10 חבילות אטומות מעורבות + קלף פרומו אנרגיה נדיר. פתיחה בלייב לזוכה.",
         image:
           "https://images.pexels.com/photos/37743086/pexels-photo-37743086.png?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
         startPrice: 120,

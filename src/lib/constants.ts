@@ -66,7 +66,7 @@ export function buildOrderMessage(opts: {
 
 export function buildBidMessage(opts: { title: string; amount: number; name: string }) {
   return [
-    `הצעה להערצה באתר ${STORE_NAME_HE}`,
+    `הצעה למכירה פומבית באתר ${STORE_NAME_HE}`,
     `פריט: ${opts.title}`,
     `ההצעה שלי: ₪${opts.amount.toLocaleString("he-IL")}`,
     `שם: ${opts.name}`,

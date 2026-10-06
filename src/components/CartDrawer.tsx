@@ -146,7 +146,7 @@ export default function CartDrawer() {
                 <Pokeball size={64} className="animate-floaty" />
                 <h4 className="text-2xl font-black">הסל ריק</h4>
                 <p className="text-sm text-white/50">
-                  עדיין לא תפסתם כלום — בחנות מחכים בוקסים אטומים וחבילות עם מזל בפנים.
+                  עדיין לא תפסתם כלום — בחנות מחכים מארזים, בוסטר בוקס, איטיבי וחבילות עם מזל בפנים.
                 </p>
                 <a href="/shop" onClick={closeCart} className="btn-gold">
                   לחנות

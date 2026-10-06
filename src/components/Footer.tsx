@@ -27,7 +27,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-7 text-white/50">
-              חנות פוקימון TCG ולייבים: בוסטר בוקסים אטומים, חבילות, קלפים נדירים
+              חנות פוקימון TCG ולייבים: מארזים, בוסטר בוקס, איטיבי, חבילות, קלפים נדירים
               ומכירות פומביות — עם ידי הזהב של דן ואחריות מלאה על כל חבילה.
             </p>
             <div className="mt-5 flex flex-wrap gap-2.5">

@@ -66,7 +66,7 @@ export default function ClaimBoard({
     return (
       <div className="glass-panel rounded-3xl p-10 text-center">
         <Gavel className="mx-auto mb-3 text-gold/60" size={32} />
-        <p className="font-bold text-white/70">עוד אין הערצות פעילות — חוזרים אלינו בלייב הבא!</p>
+        <p className="font-bold text-white/70">עוד אין מכירות פומביות פעילות — חוזרים אלינו בלייב הבא!</p>
       </div>
     );
   }
@@ -174,7 +174,7 @@ function ClaimCard({
               </div>
             ) : (
               <div className="rounded-2xl border border-white/10 bg-white/4 px-4 py-3 text-sm font-bold text-white/50">
-                ההערצה הסתיימה ללא זוכה
+                המכירה הסתיימה ללא זוכה
               </div>
             )
           ) : (

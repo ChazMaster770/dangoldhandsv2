@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "החנות | דן ידי זהב",
-  description: "בוסטר בוקסים אטומים וחבילות פוקימון במחירי זהב — בוחרים ושולחים הזמנה בוואטסאפ או ב-SMS.",
+  description: "מארזים, בוסטר בוקס, איטיבי וחבילות פוקימון במחירי זהב — בוחרים ושולחים הזמנה בוואטסאפ או ב-SMS.",
 };
 
 async function getProducts(): Promise<Product[]> {
@@ -32,7 +32,7 @@ export default async function ShopPage() {
         <SectionHead
           kicker="THE GOLDEN SHOP"
           title="החנות של דן"
-          sub="בוקסים אטומים וחבילות פוקימון מקוריות. מוסיפים לסל ושולחים את ההזמנה ישירות בוואטסאפ או ב-SMS — בלי הרשמה ובלי כרטיס."
+          sub="מארזים, בוסטר בוקס, איטיבי וחבילות פוקימון מקוריות. מוסיפים לסל ושולחים את ההזמנה ישירות בוואטסאפ או ב-SMS — בלי הרשמה ובלי כרטיס."
           action={
             <a
               href={waLink("היי דן! רציתי לשאול על זמינות של מוצר בחנות.")}
